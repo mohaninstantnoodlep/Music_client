@@ -1,4 +1,5 @@
 from pyrogram import Client, idle
+from pyrogram import filters
 
 api_id = 26966078
 api_hash = "a8c50ddacb21496549697fe8dbc86d3e"
@@ -10,6 +11,14 @@ app = Client(
     api_hash = api_hash,
     bot_token = bot_token,
 )
+
+
+@app.on_message(filters.command("start") & filters.private)
+async def start_message(client, message):
+    message.reply_text(f"Hello, {message.from_user.mention}")
+
+
+
 
 
 app.start()
